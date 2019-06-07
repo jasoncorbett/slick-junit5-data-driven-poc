@@ -63,6 +63,10 @@ public class CustomParameterizedTestExtension implements TestTemplateInvocationC
         ParameterizedTestNameFormatter formatter = createNameFormatter(templateMethod, displayName);
         AtomicLong invocationCount = new AtomicLong(0);
 
+        if(System.getenv("SLICK_DATA_DRIVEN") != null) {
+            return Arrays.asList((TestTemplateInvocationContext)new SlickTemplateInvocationContext(formatter, methodContext)).stream();
+        }
+
         // @formatter:off
         return findRepeatableAnnotations(templateMethod, ArgumentsSource.class)
                 .stream()

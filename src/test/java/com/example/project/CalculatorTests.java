@@ -20,6 +20,9 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class CalculatorTests {
 
+	@RegisterExtension
+	public static TestWatcher watcher = new TestWatcher();
+
 	@Test
 	@DisplayName("1 + 1 = 2")
 	void addsTwoNumbers() {
